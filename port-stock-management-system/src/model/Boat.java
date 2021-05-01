@@ -31,8 +31,8 @@ public class Boat {
         		stockCount + "\n" + "Time Received: " + timeReceived + "\n" + "Time Sent: " + timeSent + "\n" + "Stock Height: " + stockHeight + "m\n" + "Stock Weight: " + stockWeight + "kg");
     }
     public String toString(){
-        return "\nBoat name: " + boatName + "\n" + "Inbound Address: " + inboundAddress + "\n" + "Outbound Address: " + outboundAddress + "\n" + "Type of Stock: " + stockName + "\n" + "Quantity of Stock: " +
-        		stockCount + "\n" + "Time Received: " + timeReceived + "\n" + "Time Sent: " + timeSent + "\n" + "Stock Height: " + stockHeight + "m\n" + "Stock Weight: " + stockWeight + "kg";
+        return "\nBoat name: " + boatName + " \n" + " Inbound Address: " + inboundAddress + " \n" + " Outbound Address: " + outboundAddress + " \n" + " Type of Stock: " + stockName + " \n" + " Quantity of Stock: " +
+        		stockCount + " \n" + " Time Received: " + timeReceived + " \n" + " Time Sent: " + timeSent + " \n" + " Stock Height: " + stockHeight + " \n" + " Stock Weight: " + stockWeight + "kg";
     }
     public String getBoatName() {
     	return boatName;

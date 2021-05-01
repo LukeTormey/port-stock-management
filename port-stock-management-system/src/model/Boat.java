@@ -30,6 +30,37 @@ public class Boat {
         System.out.println("\nBoat name: " + boatName + "\n" + "Inbound Address: " + inboundAddress + "\n" + "Outbound Address: " + outboundAddress + "\n" + "Type of Stock: " + stockName + "\n" + "Quantity of Stock: " +
         		stockCount + "\n" + "Time Received: " + timeReceived + "\n" + "Time Sent: " + timeSent + "\n" + "Stock Height: " + stockHeight + "m\n" + "Stock Weight: " + stockWeight + "kg");
     }
+    public String toString(){
+        return "\nBoat name: " + boatName + "\n" + "Inbound Address: " + inboundAddress + "\n" + "Outbound Address: " + outboundAddress + "\n" + "Type of Stock: " + stockName + "\n" + "Quantity of Stock: " +
+        		stockCount + "\n" + "Time Received: " + timeReceived + "\n" + "Time Sent: " + timeSent + "\n" + "Stock Height: " + stockHeight + "m\n" + "Stock Weight: " + stockWeight + "kg";
+    }
+    public String getBoatName() {
+    	return boatName;
+    }
+    public String getInboundAddress() {
+    	return boatName;
+    }
+    public String getOutboundAddress() {
+    	return boatName;
+    }
+    public String getStockName() {
+    	return stockName;
+    }
+    public Integer getStockCount() {
+    	return stockCount;
+    }
+    public String getTimeReceived() {
+    	return timeReceived;
+    }
+    public String getTimeSent() {
+    	return timeSent;
+    }
+    public Integer getStockHeight() {
+    	return (int) stockHeight;
+    }
+    public Integer getStockWeight() {
+    	return (int) stockWeight;
+    }
     
     public static class Builder {
         private String boatName;

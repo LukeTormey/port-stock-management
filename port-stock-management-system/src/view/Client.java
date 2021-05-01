@@ -2,6 +2,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
@@ -11,9 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import controller.Command;
 import controller.CoolDecorator;
 import controller.Filter;
 import java.awt.Font;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
 import model.Boat;
 
 public class Client extends JFrame implements ActionListener{
@@ -47,10 +52,13 @@ public class Client extends JFrame implements ActionListener{
         .setStockWeight(1000)
         .build();
     
- //JLabels, JButtons
+ //JLabels, JButtons, JMenu
     JLabel DisplayGeneralInfo, ListStaffLabel, DisplayGeneralInfoThirdBoat, SignOff;
 	private JButton ListStaff, DisplayGeneralFirst, DisplayGeneralSecond, DisplayGeneralThird, Quit, firstBoatSignOff, secondBoatSignOff, thirdBoatSignOff;
-	
+	private Menu mnuFile;
+	private MenuItem mnuOpen;
+	private MenuItem mnuExit;
+
 	//vector and filter  
     private Vector staff;
 	private Filter filter;   
@@ -128,6 +136,30 @@ public class Client extends JFrame implements ActionListener{
         staffPanel.add(Staff);
         staffPanel.add( new CoolDecorator(ListStaff = new JButton("List all Staff")));
         app.add(staffPanel);
+        
+        //menubar
+        MenuBar mbar = new MenuBar();
+        setMenuBar(mbar);
+        mnuFile = new Menu("File", true);
+        mbar.add(mnuFile);
+        mnuOpen = new MenuItem("Open...");
+        mnuFile.add(mnuOpen);
+        mnuExit = new MenuItem("Exit");
+        mnuFile.add(mnuExit);
+        
+        //command
+        JFrame frm = this;
+        mnuOpen.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+               executeCommand(new OpenCommand(frm));
+            }
+        });
+
+      mnuExit.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+               executeCommand(new ExitCommand(frm));
+            }
+        });
         
         //action listeners
         ListStaff.addActionListener(this);
@@ -217,6 +249,11 @@ public class Client extends JFrame implements ActionListener{
         }
    }
 	
+	private void executeCommand(Command command){
+	      // We could keep a command history in a stack here
+	      command.Execute();
+	   }
+	
 	public static void main(String args[]) {
 		Client client = new Client();
 		
@@ -247,4 +284,20 @@ public class Client extends JFrame implements ActionListener{
 		client.filterNamebyW();
 	}
 
+	class OpenCommand implements Command{
+		   private JFrame parent;
+		   OpenCommand(JFrame parent){this.parent = parent;}
+		   public void Execute(){
+		      FileDialog fDlg=new FileDialog(parent,"Open file");
+		      fDlg.show();
+		   }
+		}
+
+		class ExitCommand implements Command{
+		   private JFrame parent;
+		   ExitCommand(JFrame parent){this.parent = parent;}
+		   public void Execute(){
+		      System.exit(0);
+		   }
+		}
 }
